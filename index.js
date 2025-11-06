@@ -8,11 +8,12 @@ import mongoose from "mongoose";
 
 const app = express()
 const {json} = pkg
-app.use(cors())
-app.use(json({ limit: '5mb' }))
-
-
 const PORT = 4000
+app.use(cors())
+const allowed = 'https://uhf-app.vercel.app/'
+app.use(cors({ origin: allowed }));
+app.use(express.json({ limit: '10mb' }))
+app.listen(PORT, '0.0.0.0', () => console.log('Server listening on', PORT));
 
 
 async function start() {
